@@ -28,6 +28,7 @@ class App extends React.Component {
             <Route path="/Admin/Approved" element={<Approved />}></Route>
             <Route path="/Admin/Dashboard" element={<Admin />}></Route>
             <Route path="/Admin/Login" element={<AdminLogin />}></Route>
+            <Route path="/Admin" element={<AdminLogin />}></Route>
             <Route path="/SignUp" element={<SignUp />}></Route>
             <Route path="/Login" element={<Login />}></Route>
             <Route path="/Choose" element={<Choose />}></Route>

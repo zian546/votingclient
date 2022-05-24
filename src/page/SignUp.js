@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { useMoralis } from "react-moralis";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { Box } from "@mui/material";
 import '@fontsource/roboto/700.css';
 import Typography from '@mui/material/Typography';
-import Login from "./Login";
-import { BrowserRouter, Link, Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import Stack from '@mui/material/Stack';
 
@@ -233,7 +231,7 @@ function SignUp() {
           otp: val,
         };
         //break if count exceed 3
-        const response = await fetch("http://localhost:3001/send", {
+        const response = await fetch("https://zianserver.herokuapp.com/send", {
           method: "POST",
           headers: {
             "Content-type": "application/json",
@@ -287,7 +285,7 @@ function SignUp() {
           console.log("saving User to database......");
 
           //save user to database for further approval
-          await Axios.post("http://localhost:3001/Create", {
+          await Axios.post("https://zianserver.herokuapp.com/Create", {
             Username: userDisplay._username,
             Password: password._password,
             Email: webUser.email,
@@ -298,6 +296,7 @@ function SignUp() {
           }).then((err, res) => {
             console.log(res);
             alert("please wait while our team  verifies your account");
+            navigation("/login");
           });
         } else {
           alert("Public key already registered!");

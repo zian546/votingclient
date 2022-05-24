@@ -1,35 +1,42 @@
 import React, { useState } from "react";
 import "@fontsource/roboto/700.css";
-import Typography from "@mui/material/Typography";
 import { ReactComponent as Plus } from "../icons/plus.svg";
-import { useMoralis } from "react-moralis";
 import {
-  BrowserRouter,
-  Link,
-  Route,
-  Routes,
-  Navigate,
   useNavigate,
 } from "react-router-dom";
 import "./Admin.css";
-import Axios from "axios";
 import Button from "@mui/material/Button";
 
 
 
 function Admin() {
+  let navigation = useNavigate();
 
   const admin = localStorage.getItem("admin");
 
-  return (
-    
-    <Navbar>
-      <NavItem icon={<Plus></Plus>}>
-        <DropdownMenu></DropdownMenu>
-      </NavItem>
-    </Navbar>
-    
-  );
+  const Login = ()=> {
+    navigation("/admin/login");
+  }
+ 
+
+  if (admin === undefined || admin === null) {
+    return (<div id="error_page" className="center">
+        <button id="login" onClick={Login}>Login<br /> <img src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" height="60" width="30" /></button>
+      </div>)
+  }else{
+
+    return (
+      
+      
+      <Navbar>
+        <NavItem icon={<Plus></Plus>}>
+          <DropdownMenu></DropdownMenu>
+        </NavItem>
+      </Navbar>
+      
+    );
+  }
+
 }
 
 function Navbar(props) {

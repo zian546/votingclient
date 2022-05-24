@@ -46,7 +46,7 @@ function Pending() {
   const [render, setRender] = useState(false);
 
   const pendingUser = async () => {
-    Axios.post("http://localhost:3001/read", {
+    Axios.post("https://zianserver.herokuapp.com/read", {
       condition: "pending",
     }).then((response) => {
 
@@ -80,7 +80,7 @@ function Pending() {
           <Button
             variant="contained"
             onClick={() => {
-              Axios.post("http://localhost:3001/Update", {
+              Axios.post("https://zianserver.herokuapp.com/Update", {
                 condition: "active",
                 id: data.id,
               }).then((response) => {
@@ -97,6 +97,8 @@ function Pending() {
                   data.ethAddress
                 );
 
+                Axios.post("https://zianserver.herokuapp.com/sendActivation", {email: data.Email});
+
                 console.log(response);
               });
             }}
@@ -106,7 +108,7 @@ function Pending() {
           <Button
             variant="contained"
             onClick={() => {
-              Axios.post("http://localhost:3001/Update", {
+              Axios.post("https://zianserver.herokuapp.com/Update", {
                 condition: "rejected",
                 id: data.id,
               }).then((response) => {

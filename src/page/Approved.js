@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "@fontsource/roboto/700.css";
 import "./Approved.css";
 import Axios from "axios";
 import Button from "@mui/material/Button";
-import {useMoralis} from "react-moralis";
 
 function Approved() {
 
@@ -12,7 +11,7 @@ function Approved() {
   const [render, setRender] = useState(false);
 
   const pendingUser = async () => {
-    Axios.post("http://localhost:3001/read", {
+    Axios.post("https://zianserver.herokuapp.com/read", {
       condition: "active",
     }).then((response) => {
 

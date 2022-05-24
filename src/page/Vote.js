@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Vote.css";
-import MetaMaskOnboarding from "@metamask/onboarding";
 import { useMoralis } from "react-moralis";
 import { useTable } from 'react-table'
-import { BrowserRouter, Link, Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 function Vote(props) {
