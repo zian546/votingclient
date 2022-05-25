@@ -449,12 +449,11 @@ function Vote(props) {
 
 
 
-useEffect(() =>{ 
-  Promise.all([searchBlue,searchRed]);
-})
-
   const data = React.useMemo(
-    () => [{
+  async  () =>
+  await searchBlue(),
+  await searchRed()
+   [{
       PublicKeyRed: retrieveRed.map((data, index) => {
         return <tr>{data.PublicKey}</tr>;
       }),
