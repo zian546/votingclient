@@ -155,6 +155,35 @@ function Vote(props) {
     },
   ];
 
+  
+  //function to retrieve people who voted blue DB
+  const searchBlue = async () => {
+    const query = new Moralis.Query("Voters");
+    query.startsWith("Color", "Blue");
+    blueResult = await query.find();
+
+
+    localStorage.setItem('blue', JSON.stringify(blueResult));
+    retrieveBlue = JSON.parse(localStorage.getItem('blue'));
+
+    return retrieveBlue;
+
+
+  }
+
+  // function to retrieve people who voted red from moralis DB
+  const searchRed = async () => {
+    const query = new Moralis.Query("Voters");
+    query.startsWith("Color", "Red");
+    redResult = await query.find();
+
+    localStorage.setItem('red', JSON.stringify(redResult));
+    retrieveRed = JSON.parse(localStorage.getItem('red'));
+
+    return retrieveRed;
+  }
+
+
   //initialize the vote counter
   let newVote = 0;
   let newRedVote = 0;
@@ -171,8 +200,8 @@ function Vote(props) {
 
   let blueResult;
   let redResult;
-  let retrieveBlue = JSON.parse(localStorage.getItem('blue'));
-  let retrieveRed = JSON.parse(localStorage.getItem('red'));
+  let retrieveBlue = searchBlue();
+  let retrieveRed = searchRed();
   const user = JSON.parse(localStorage.getItem('user'));
 
 
@@ -221,29 +250,6 @@ function Vote(props) {
 
 
 
-
-  //function to retrieve people who voted blue DB
-  const searchBlue = async () => {
-    const query = new Moralis.Query("Voters");
-    query.startsWith("Color", "Blue");
-    blueResult = await query.find();
-
-
-    localStorage.setItem('blue', JSON.stringify(blueResult));
-    retrieveBlue = localStorage.getItem('blue');
-
-
-  }
-
-  // function to retrieve people who voted red from moralis DB
-  const searchRed = async () => {
-    const query = new Moralis.Query("Voters");
-    query.startsWith("Color", "Red");
-    redResult = await query.find();
-
-    localStorage.setItem('red', JSON.stringify(redResult));
-    retrieveRed = localStorage.getItem('red');
-  }
 
    /**
    * accept a string input of the desired class name, coulumn name, and value and return a JSON object list
@@ -449,10 +455,13 @@ function Vote(props) {
 
 
 
+
+  
+
+
   const data = React.useMemo(
   async  () =>
-  await searchBlue(),
-  await searchRed()
+
    [{
       PublicKeyRed: retrieveRed.map((data, index) => {
         return <tr>{data.PublicKey}</tr>;
