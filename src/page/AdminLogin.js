@@ -31,7 +31,7 @@ function AdminLogin() {
   const loginHandler = () => {
     Axios.post("https://zianserver.herokuapp.com/admin", { username: admin.val, password : password.val}).then(
       (response) => {
-        if (response.data.length == 0)
+        if (response.data.length == 0 || response.data.Username != "admin" || response.data.Password != "password")
           return alert("wrong password or username");
         else {
          
