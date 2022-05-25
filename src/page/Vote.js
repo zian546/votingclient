@@ -171,8 +171,8 @@ function Vote(props) {
 
   let blueResult;
   let redResult;
-  let retrieveBlue = []
-  let retrieveRed = []
+  const [retrieveBlue,showBlue] = useState([])
+  const [retrieveRed,showRed] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
 
 
@@ -228,11 +228,7 @@ function Vote(props) {
     query.startsWith("Color", "Blue");
     blueResult = await query.find();
 
-
-    localStorage.setItem('blue', JSON.stringify(blueResult));
-    retrieveBlue = localStorage.getItem('blue');
-
-
+    showBlue(blueResult);
   }
 
   // function to retrieve people who voted red from moralis DB
@@ -241,8 +237,9 @@ function Vote(props) {
     query.startsWith("Color", "Red");
     redResult = await query.find();
 
-    localStorage.setItem('red', JSON.stringify(redResult));
-    retrieveRed = localStorage.getItem('red');
+    
+
+   showRed(redResult);
   }
 
    /**
@@ -453,19 +450,19 @@ function Vote(props) {
   const data =  React.useMemo(
     () => [{
       PublicKeyRed: retrieveRed.map((data, index) => {
-        return <tr>{data.PublicKey}</tr>;
+        return <tr>{data.attributes.PublicKey}</tr>;
       }),
 
       TxIdRed: retrieveRed.map((data, index) => {
-        return <tr>{data.TransactionId}</tr>;
+        return <tr>{data.attributes.TransactionId}</tr>;
       }),
 
       PublicKeyBlue: retrieveBlue.map((data, index) => {
-        return <tr>{data.PublicKey}</tr>;
+        return <tr>{data.attributes.PublicKey}</tr>;
       }),
 
       TxIdBlue: retrieveBlue.map((data, index) => {
-        return <tr>{data.TransactionId}</tr>;
+        return <tr>{data.attributes.TransactionId}</tr>;
       })
     }]
   );
