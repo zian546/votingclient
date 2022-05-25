@@ -87,6 +87,7 @@ function SignUp() {
   const [activationStatus, setStatus] = useState({ _activationStatus: true });
   const [OTP, setRealOTP] = useState(0);
   const [InputedOTP, setInputOTP] = useState({ otp: "" });
+  const [ethAddress,setEth] = useState({val : ""})
 
   let UserOTP = "";
 
@@ -262,15 +263,17 @@ function SignUp() {
   const CompareOTP = async () => {
     try {
       if (OTP == InputedOTP.otp) {
-        await Moralis.authenticate({
+       await  Moralis.authenticate({
           signingMessage: "sign up to voting dapp",
-        });
-       
+        }).then(() => {
+           setEth({val : user.attributes.ethAddress});
+        
+       })
         //check user ethAddress ke database
         const checkAddress = await FindMoralis(
           "VoterId",
           "ETHAddress",
-          user.attributes.ethAddress
+          ethAddress.val
         );
 
         if (checkAddress == undefined) {
@@ -300,6 +303,7 @@ function SignUp() {
     } catch (error) {
       console.error(error);
     }
+
   };
 
   return (
