@@ -521,11 +521,7 @@ function Vote(props) {
       </div>)
   }
   else{
-
-    searchBlue();
-    searchRed();
-
-    return (
+    Promise.all([searchBlue,searchRed]).then(() =>{ return (
       <>
         <div className="center">
           Cast your vote!<br />
@@ -595,7 +591,20 @@ function Vote(props) {
 
             }
   
+      
 
+
+
+
+
+
+
+    )
+    
+
+   
+
+}
 }
 
 
