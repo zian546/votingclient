@@ -179,7 +179,7 @@ function Vote(props) {
 
 
   //contract address
-  const Address = "0xD7bA15C83105E96f8b935A400BD21F5CC3283A62"
+  const Address = "0x4B382cd8d28c6e4b206DC0278E375735736Da69c"
 
 
 
@@ -531,7 +531,9 @@ function Vote(props) {
           <p id="vote_count">Voters  count :  <br />{totalVoter.totalVote}</p>
           <p id="vote_count">Red Vote count : <br />{redVoter.redVote}</p>
           <p id="vote_count">Blue Vote count : <br />{blueVoter.blueVote}</p>
-          <table {...getTableProps()} style={{alignItems : 'center'
+          <div style={{margin: "auto"}}>
+          <table {...getTableProps()} style={{alignItems : 'center',
+          margin : "auto"
 
           }}>
             <thead>
@@ -580,6 +582,7 @@ function Vote(props) {
               })}
             </tbody>
           </table>
+          </div>
 
           <button id="result_button" onClick={TotalVotes} >Refresh</button>
           <p id="account">Account :<br />{user.ethAddress}<br /></p>

@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Axios from "axios";
+import "dotenv/config";
 
 function AdminLogin() {
   let navigation = useNavigate();
@@ -29,10 +30,11 @@ function AdminLogin() {
   };
 
   const loginHandler = () => {
-    Axios.post("https://zianserver.herokuapp.com/admin", { username: admin.val, password : password.val}).then(
-      (response) => {
-        if (response.data.length == 0 || response.data.Username != "admin" || response.data.Password != "password")
-          return alert("wrong password or username");
+
+    
+    
+   
+    if(admin.val != "admin" && password.val != "password") {return alert("wrong credentials");}
         else {
          
           const save = {
@@ -44,8 +46,8 @@ function AdminLogin() {
           localStorage.setItem('admin', JSON.stringify(save));
           navigation("/admin/dashboard");
         }
-      }
-    );
+      
+    
   };
   return (
     <div
@@ -84,7 +86,6 @@ function AdminLogin() {
         </Button>
       </Stack>
     </div>
-  );
-}
-
+  );}
+    
 export default AdminLogin;
