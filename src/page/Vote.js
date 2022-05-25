@@ -522,6 +522,9 @@ function Vote(props) {
   }
   else{
 
+    searchBlue();
+    searchRed();
+
     return (
       <>
         <div className="center">
