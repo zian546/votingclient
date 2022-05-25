@@ -42,7 +42,6 @@ function AdminLogin() {
 
           //very unsafe
           localStorage.setItem('admin', JSON.stringify(save));
-          console.log(response);
           navigation("/admin/dashboard");
         }
       }

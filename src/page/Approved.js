@@ -16,7 +16,6 @@ function Approved() {
     }).then((response) => {
 
       setRejected(response.data);
-      console.log(approved);
 
       setRender(!render);
     });

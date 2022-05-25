@@ -195,7 +195,7 @@ function Vote(props) {
         track.set("Username", String(user.username));
         track.set("Action",_action);
 
-        console.log(`${_action} saved`);
+      
 
         await track.save();
         
@@ -339,7 +339,6 @@ function Vote(props) {
 
     const checkUser = await FindMoralis("Voters","Username",user.username);
 
-    console.log(checkUser);
 
     if (checkUser == undefined) {
       try {
@@ -377,7 +376,7 @@ function Vote(props) {
 
     const checkUser = await FindMoralis("Voters","Username",user.username);
 
-    console.log(checkUser);
+
 
     if (checkUser == undefined) {
       try {
@@ -446,7 +445,6 @@ function Vote(props) {
   
   const DoAtUnload = async () => {
     await TrackMoralis("logout");
-    console.log("logout saved")
   }
 
 

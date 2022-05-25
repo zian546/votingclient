@@ -51,7 +51,7 @@ function Pending() {
     }).then((response) => {
 
       setPending(response.data);
-      console.log(pending);
+     
 
       setRender(!render);
     });
@@ -99,7 +99,7 @@ function Pending() {
 
                 Axios.post("https://zianserver.herokuapp.com/sendActivation", {email: data.Email});
 
-                console.log(response);
+             
               });
             }}
           >
@@ -114,7 +114,7 @@ function Pending() {
               }).then((response) => {
                 //auto refresh the page for pending user
                 pendingUser();        
-                console.log(response);
+      
               });
             }}
           >

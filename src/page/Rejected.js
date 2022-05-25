@@ -16,7 +16,7 @@ function Rejected() {
     }).then((response) => {
 
       setRejected(response.data);
-      console.log(rejected);
+   
 
       setRender(!render);
     });

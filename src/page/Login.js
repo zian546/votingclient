@@ -38,7 +38,7 @@ function Login() {
         track.set("Username", String(username._username));
         track.set("Action",_action);
 
-        console.log(`${_action} saved`);
+        
 
         await track.save();
         
@@ -91,7 +91,7 @@ function Login() {
           username._username
         );
 
-        console.log(checkUser);
+    
 
         if (checkUser === undefined) {
           alert("Account not registered, register first");
@@ -100,7 +100,6 @@ function Login() {
           await logout();
           //login user to MetaMask, get public address and store it in the _user_ variable
           await Moralis.authenticate().then(function (user) {
-            console.log(user);
             if (checkUser.attributes.ETHAddress == user.attributes.ethAddress) {
               saveUser = {
                 username: username._username,

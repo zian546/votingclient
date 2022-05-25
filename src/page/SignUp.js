@@ -149,7 +149,6 @@ function SignUp() {
 
   //check availability of phone number and username;
   const YesConfirm = async () => {
-    console.log(webUser);
 
     const checkPhone = await FindMoralis("VoterId", "Phone", phone._phone);
     const checkUser = await FindMoralis(
@@ -159,8 +158,7 @@ function SignUp() {
     );
     const checkEmail = await FindMoralis("VoterId", "Email", email._email);
 
-    console.log(checkPhone, checkUser);
-
+  
     if (
       checkPhone == undefined &&
       checkUser == undefined &&
@@ -220,11 +218,10 @@ function SignUp() {
         val += digits[Math.floor(Math.random() * 10)];
       }
       setRealOTP(val);
-      console.log(val);
 
       //send otp through email with smtp build with express.js
       try {
-        console.log("sending...");
+     
 
         const param = {
           email: webUser.email,
@@ -241,7 +238,7 @@ function SignUp() {
           .then((res) => res.json())
           .then(async (res) => {
             const resData = await res;
-            console.log(resData);
+     
             if (resData == "Error: No recipients defined") {
               alert("Your Email is not Valid");
               return;
@@ -249,8 +246,7 @@ function SignUp() {
 
             //count how many times otp had been sent
             OTPsendCount++;
-            console.log(OTPsendCount);
-
+       
             alert(
               "otp code has been sent, check your email. \nDon't resfresh your browser!"
             );
@@ -269,7 +265,7 @@ function SignUp() {
         await Moralis.authenticate({
           signingMessage: "sign up to voting dapp",
         });
-        console.log(`user is : ${user}`);
+       
         //check user ethAddress ke database
         const checkAddress = await FindMoralis(
           "VoterId",
@@ -277,12 +273,9 @@ function SignUp() {
           user.attributes.ethAddress
         );
 
-        console.log(checkAddress);
-
         if (checkAddress == undefined) {
           //save User ke database
-          console.log(webUser.email, activationStatus._activationStatus);
-          console.log("saving User to database......");
+         
 
           //save user to database for further approval
           await Axios.post("https://zianserver.herokuapp.com/Create", {
@@ -294,7 +287,7 @@ function SignUp() {
             ActivationStatus: "pending",
             CreatedAt: Date(),
           }).then((err, res) => {
-            console.log(res);
+         
             alert("please wait while our team  verifies your account");
             navigation("/login");
           });
