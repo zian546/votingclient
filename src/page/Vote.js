@@ -452,7 +452,7 @@ function Vote(props) {
 
 
   const data = React.useMemo(
-    () => [{
+    () => Promise.all([searchBlue,searchRed]).then(() =>[{
       PublicKeyRed: retrieveRed.map((data, index) => {
         return <tr>{data.PublicKey}</tr>;
       }),
@@ -468,7 +468,7 @@ function Vote(props) {
       TxIdBlue: retrieveBlue.map((data, index) => {
         return <tr>{data.TransactionId}</tr>;
       })
-    }]
+    }])
   );
 
   const columns = React.useMemo(
