@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "sql6.freemysqlhosting.net",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "zian db",
+            "database": "sql6494941",
+            "username": "sql6494941",
+            "password": "68bGpkz3QY"
+        }
+    ]
+}

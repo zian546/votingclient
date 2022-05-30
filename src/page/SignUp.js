@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import Stack from '@mui/material/Stack';
+import detectEthereumProvider from '@metamask/detect-provider';
 
 
 
@@ -16,6 +17,7 @@ let OTPsendCount = "";
 
 function SignUp() {
   const { Moralis, user } = useMoralis();
+  const { ethereum } = window;
   let navigation = useNavigate();
 
   //this must be removed and replaced with an API
@@ -36,6 +38,7 @@ function SignUp() {
       console.error(err);
     }
   }
+
 
   /**
    * this will save the desired input as User in the moralis database
@@ -87,9 +90,9 @@ function SignUp() {
   const [activationStatus, setStatus] = useState({ _activationStatus: true });
   const [OTP, setRealOTP] = useState(0);
   const [InputedOTP, setInputOTP] = useState({ otp: "" });
-  const [ethAddress,setEth] = useState({val : ""})
+  
 
-  let UserOTP = "";
+  let ethAddress = "";
 
   //store webUser input
   const GetUsername = (event) => {
@@ -265,15 +268,17 @@ function SignUp() {
       if (OTP == InputedOTP.otp) {
        await  Moralis.authenticate({
           signingMessage: "sign up to voting dapp",
-        }).then(() => {
-           setEth({val : user.attributes.ethAddress});
+        })
+          
+          ethAddress = await ethereum.request({ method: 'eth_requestAccounts' })
+          console.log(ethAddress);
         
-       })
+       
         //check user ethAddress ke database
         const checkAddress = await FindMoralis(
           "VoterId",
           "ETHAddress",
-          ethAddress.val
+          String(ethAddress)
         );
 
         if (checkAddress == undefined) {
@@ -285,7 +290,7 @@ function SignUp() {
             Username: userDisplay._username,
             Password: password._password,
             Email: webUser.email,
-            ethAddress: user.attributes.ethAddress,
+            ethAddress: ethAddress,
             Phone: phone._phone,
             ActivationStatus: "pending",
             CreatedAt: Date(),

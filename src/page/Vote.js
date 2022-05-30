@@ -449,19 +449,19 @@ function Vote(props) {
 
   const data =  React.useMemo(
     () => [{
-      PublicKeyRed: retrieveRed.map((data, index) => {
+      PublicKeyRed: retrieveRed.map((data) => {
         return <tr>{data.attributes.PublicKey}</tr>;
       }),
 
-      TxIdRed: retrieveRed.map((data, index) => {
+      TxIdRed: retrieveRed.map((data) => {
         return <tr>{data.attributes.TransactionId}</tr>;
       }),
 
-      PublicKeyBlue: retrieveBlue.map((data, index) => {
+      PublicKeyBlue: retrieveBlue.map((data) => {
         return <tr>{data.attributes.PublicKey}</tr>;
       }),
 
-      TxIdBlue: retrieveBlue.map((data, index) => {
+      TxIdBlue: retrieveBlue.map((data) => {
         return <tr>{data.attributes.TransactionId}</tr>;
       })
     }]
