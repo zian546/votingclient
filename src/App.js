@@ -12,11 +12,7 @@ import AdminLogin from "./page/AdminLogin";
 import { BrowserRouter, Link, Route, Routes, Navigate } from "react-router-dom";
 
 class App extends React.Component {
-  /*constructor(){
-    super(props)
-    this.state = {test : 0}
-  }*/
-
+ 
   render() {
     return (
       <>
